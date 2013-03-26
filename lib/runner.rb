@@ -11,9 +11,9 @@ ticker = Ticker.new
 stock_exchange.add_observer(ticker)
 
 stocks.each do |stock_attributes| 
-	stock = Stock.new(stock_attributes[0], stock_attributes[1])
-	stock.add_observer(stock_exchange)
-	stock.generate_price
+  stock = Stock.new(stock_attributes[0], stock_attributes[1])
+  stock.add_observer(stock_exchange)
+  stock.generate_price
 end
 
 # t1=Thread.new{stock.generate_price(5)}

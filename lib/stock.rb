@@ -1,36 +1,33 @@
 class Stock
-	attr_reader :stock_price, :observers
+  attr_reader :stock_price, :observers
 
-	def initialize(symbol, refresh_time)
-		@symbol = symbol
-		@refresh_time = refresh_time
-		@observers = []
-	end
+  def initialize(symbol, refresh_time)
+    @symbol = symbol
+    @refresh_time = refresh_time
+    @observers = []
+  end
 
-	def add_observer(observer)
-		@observers << observer
-	end
+  def add_observer(observer)
+    @observers << observer
+  end
 
-	def remove_observer(observer_id)
-		@observers.delete_at(observer_id)		
-	end
+  def remove_observer(observer_id)
+    @observers.delete_at(observer_id)		
+  end
 
-	def generate_price		
-		# Thread.new do			  			
-    		for counter in 1..3	do
-    			@stock_price = rand(1..500)		
-    			notify
-    			sleep @refresh_time
-  			end
-		# end
-	end
+  def generate_price		
+    for counter in 1..3	do
+     @stock_price = rand(1..500)		
+     notify
+     sleep @refresh_time
+    end
+  end
 
-	def notify
-		observers.each do |observer|
-			observer.notify(@symbol, @stock_price)
-		end	
-	end
-
+  def notify
+    observers.each do |observer|
+     observer.notify(@symbol, @stock_price)
+    end	
+  end
 end
 
 
